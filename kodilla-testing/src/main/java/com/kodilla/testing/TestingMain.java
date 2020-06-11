@@ -5,7 +5,8 @@ import com.kodilla.testing.user.SimpleUser;
 
 public class TestingMain {
     public static void main(String[] args) {
-        SimpleUser simpleUser = new SimpleUser("theForumUser");
+        //Testy SimpleUser przeniesione
+        /*SimpleUser simpleUser = new SimpleUser("theForumUser");
 
         String result = simpleUser.getUsername();
 
@@ -13,7 +14,7 @@ public class TestingMain {
             System.out.println("test OK");
         } else {
             System.out.println("Error!");
-        }
+        }*/
         //Test Calculator
         System.out.println("Test Calculator");
         Calculator calculator1 = new Calculator();
