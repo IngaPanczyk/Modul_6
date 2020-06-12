@@ -21,11 +21,11 @@ public class CollectionTestSuite {
 
     @Test
     public void testOddNumbersExterminatorEmptyList() {
-        int numbersSize;
+
         //Given
         ArrayList<Integer> numbers = new ArrayList<>();
         //When
-        numbersSize = numbers.size();
+        int numbersSize = numbers.size();
         //Then
         Assert.assertEquals(0, numbersSize);
     }
