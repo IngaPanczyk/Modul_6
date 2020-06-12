@@ -1,9 +1,7 @@
 package com.kodilla.testing.shape;
 
 public class Square implements Shape {
-    String shapeName;
-    public Square(String shapeName, double field) {
-        this.shapeName = shapeName;
+    public Square(double field) {
         this.field = field;
     }
 

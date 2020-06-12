@@ -3,48 +3,29 @@ package com.kodilla.testing.shape;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
 
 public class ShapeCollectorTestSuite {
     @Test
-    public void addFigure(){
+    public void testAddFigure(Shape shape) {
         //Given
-        ShapeCollector shapeCollector1 = new ShapeCollector ("square",4.0);
-        ShapeCollector shapeCollector2 = new ShapeCollector ("square",9.0);
-        ArrayList<ShapeCollector> shapeCollector = new ArrayList<>();
-        shapeCollector.add(shapeCollector1);
-        shapeCollector.add(shapeCollector2);
+        ShapeCollector shapeCollector = new ShapeCollector();
+        Shape circle = new Circle(5.0);
         //When
-        Square square1 = new Square(Square,15);
-
-        //ArrayList<Shape> shape = new ArrayList<>();
-
-
+        shapeCollector.addFigure(circle);
         //Then
+        Assert.assertEquals(circle, shapeCollector.getFigure(0));
     }
 
     @Test
-    public void removeFigure(){
-    }
-
-    @Test
-    public void getFigure(){
-    }
-
-    @Test
-    public void showFigures(){
+    public void testRemoveFigure(int n) {
         //Given
-        ShapeCollector shapeCollector1 = new ShapeCollector ("square",4.0);
-        ShapeCollector shapeCollector2 = new ShapeCollector ("square",9.0);
-        ArrayList<ShapeCollector> shapeCollector = new ArrayList<>();
-        shapeCollector.add(shapeCollector1);
-        shapeCollector.add(shapeCollector2);
+        ShapeCollector shapeCollector = new ShapeCollector();
+        Shape circle = new Circle(4.5);
+        Shape square = new Square(6.5);
         //When
-        ArrayList<Shape> shape = new ArrayList<>();
-
-
+        shapeCollector.removeFigure(0);
         //Then
-        Assert.assertEquals(shapeCollector, shape);
+        Assert.assertNotEquals(square, shapeCollector.getFigure(0));
     }
 
 }
