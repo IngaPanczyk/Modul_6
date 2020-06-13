@@ -11,7 +11,7 @@ public class Square implements Shape {
     double a;
     double field;
     public double getField() {
-        field = a * a;
+        //field = a * a;
         return field;
     }
 }

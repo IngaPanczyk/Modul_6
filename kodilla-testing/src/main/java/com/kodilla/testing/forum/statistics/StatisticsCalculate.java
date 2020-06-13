@@ -2,10 +2,12 @@ package com.kodilla.testing.forum.statistics;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/*
 public class StatisticsCalculate(Statistics statistics){
 
-    int void calculateAdvStatistics(Statistics statistics){//Jaki typ powinien być tej metody?
+}
+*/
+    /*int void calculateAdvStatistics(Statistics statistics){//Jaki typ powinien być tej metody?
 
         List<String> usersNames = new ArrayList<String>();
         //Liczenie ilości urzytkowników
@@ -33,7 +35,7 @@ public class StatisticsCalculate(Statistics statistics){
         return ????
 
     }*/
-}
+
     /*
     Metody:
 liczbę użytkowników,

@@ -11,7 +11,7 @@ public class Circle implements Shape{
     double field;
     double r;
     public double getField () {
-        field = 3.14 * r * r;
+        //field = 3.14 * r * r;
         return field;
     }
 }

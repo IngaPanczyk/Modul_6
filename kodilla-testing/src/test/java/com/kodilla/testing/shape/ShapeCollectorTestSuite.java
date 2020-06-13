@@ -1,10 +1,22 @@
 package com.kodilla.testing.shape;
 
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 
 public class ShapeCollectorTestSuite {
+    @Before
+    public void before() {
+        System.out.println("Test OddNumbersExterminator: START");
+    }
+
+    @After
+    public void after() {
+        System.out.println("Test OddNumbersExterminator: END");
+    }
+
     @Test
     public void testAddFigure(Shape shape) {
         //Given
@@ -16,8 +28,10 @@ public class ShapeCollectorTestSuite {
         Assert.assertEquals(circle, shapeCollector.getFigure(0));
     }
 
-    @Test
+
+   @Test
     public void testRemoveFigure(int n) {
+      
         //Given
         ShapeCollector shapeCollector = new ShapeCollector();
         Shape circle = new Circle(4.5);
@@ -25,7 +39,9 @@ public class ShapeCollectorTestSuite {
         //When
         shapeCollector.removeFigure(0);
         //Then
-        Assert.assertNotEquals(square, shapeCollector.getFigure(0));
+        Assert.assertEquals(square, shapeCollector.getFigure(0));
+
+
     }
 
 }

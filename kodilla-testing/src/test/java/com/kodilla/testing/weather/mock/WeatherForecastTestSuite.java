@@ -9,7 +9,7 @@ import java.util.HashMap;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class WeatherForecastTestSuite {
+class TestWeatherForecastTestSuite {
     @Test
     public void testCalculateForecastWithMock() {
         //Given

@@ -1,4 +1,4 @@
 package com.kodilla.testing.forum.statistics;
 
-public class TestCalculateAdvStatistics {
+public class StatisticsTestSuite {
 }
