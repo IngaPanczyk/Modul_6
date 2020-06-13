@@ -5,13 +5,11 @@ import java.util.ArrayList;
 public class ShapeCollector {
     ArrayList<Shape> shapeCollection = new ArrayList<>();
 
-    public ArrayList addFigure(Shape shape){
+    public void addFigure(Shape shape){
         shapeCollection.add(shape);
-        return shapeCollection;
     }
-    public ArrayList removeFigure(int n) {
+    public void removeFigure(int n) {
         shapeCollection.remove(n);
-        return shapeCollection;
     }
     public Shape getFigure(int n) {
         Shape getFigure = shapeCollection.get(n);

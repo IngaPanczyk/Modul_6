@@ -9,12 +9,12 @@ import org.junit.Test;
 public class ShapeCollectorTestSuite {
     @Before
     public void before() {
-        System.out.println("Test OddNumbersExterminator: START");
+        System.out.println("Test: START");
     }
 
     @After
     public void after() {
-        System.out.println("Test OddNumbersExterminator: END");
+        System.out.println("Test : END");
     }
 
     @Test
