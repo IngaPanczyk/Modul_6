@@ -21,7 +21,6 @@ public class CollectionTestSuite {
 
     @Test
     public void testOddNumbersExterminatorEmptyList() {
-
         //Given
         ArrayList<Integer> numbers = new ArrayList<>();
         //When
