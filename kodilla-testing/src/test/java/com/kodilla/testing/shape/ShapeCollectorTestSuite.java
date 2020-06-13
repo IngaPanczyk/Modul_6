@@ -27,13 +27,16 @@ public class ShapeCollectorTestSuite {
         //Then
         Assert.assertEquals(circle, shapeCollector.getFigure(0));
     }
-   @Test
+
+    @Test
     public void testRemoveFigure() {
 
         //Given
         ShapeCollector shapeCollector = new ShapeCollector();
         Shape circle = new Circle(4.5);
         Shape square = new Square(6.5);
+        shapeCollector.addFigure(circle);
+        shapeCollector.addFigure(square);
         //When
         shapeCollector.removeFigure(0);
         //Then
