@@ -5,6 +5,8 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
+import static jdk.nashorn.internal.objects.Global.Infinity;
+import static jdk.nashorn.internal.objects.Global.NaN;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -13,11 +15,11 @@ public class StatisticsTestSuite {
     @Test
     public void testCalculateAdvStatistics1() {
         //Given
-        //Liczba urzytkowników 100
+        //Liczba użytkowników 100
         Statistics statisticsMock = mock(Statistics.class);
         ArrayList<String> usersList = new ArrayList<String>();
         for (int i = 0;i< 100;i++) {
-            usersList.add("User");
+            usersList.add("User"+i);
         }
         StatisticsCalculate1 calculate = new StatisticsCalculate1();
 
@@ -28,64 +30,207 @@ public class StatisticsTestSuite {
         //When
         calculate.calculateAdvStatistics(statisticsMock);
         calculate.getAdvPostsCountForUser();
-        System.out.println(calculate.getAdvPostsCountForUser());
         calculate.getAdvCommentsCountForPostsCount();
+        calculate.getAdvCommentsCountForUser();
         statisticsMock.commentsCount();
         statisticsMock.postsCount();
         statisticsMock.usersNames().size();
 
         //Then
-        //commentsCount
         Assert.assertEquals(50, statisticsMock.commentsCount());
-        //postsCount
         Assert.assertEquals(10, statisticsMock.postsCount());
-        //AdvCommentsCountForPostsCount
-        System.out.println(statisticsMock.postsCount());
-        System.out.println(statisticsMock.usersNames().size());
-        System.out.println("Average: " + calculate.getAdvCommentsCountForPostsCount());
         Assert.assertEquals(5.0, calculate.getAdvCommentsCountForPostsCount(),0);
-        //AdvPostsCountForUser
-        //Assert.assertEquals(15.00, calculate.getAdvPostsCountForUser(),0);
-        System.out.println(calculate.getAdvPostsCountForUser());
-        //Assert.assertEquals(15.00, advCommentsCountForPostsCount,0);
-
+        Assert.assertEquals(0.1, calculate.getAdvPostsCountForUser(),0);
+        Assert.assertEquals(0.1, calculate.getAdvPostsCountForUser(),0);
+        Assert.assertEquals(5.0,  calculate.getAdvCommentsCountForPostsCount(),0);
     }
-    /*
+    //Przypadek 2: Liczba użytkowników = 0
+    @Test
     public void testCalculateAdvStatistics2() {
         //Given
-        //Liczba urzytkowników 0
+
         Statistics statisticsMock = mock(Statistics.class);
         ArrayList<String> usersList = new ArrayList<String>();
 
+        StatisticsCalculate1 calculate = new StatisticsCalculate1();
+
         when(statisticsMock.postsCount()).thenReturn(10);
-        when(statisticsMock.usersNames()).thenReturn(usersList);
         when(statisticsMock.commentsCount()).thenReturn(50);
         when(statisticsMock.usersNames()).thenReturn(usersList);
 
         //When
-        int comentsCount = statisticsMock.commentsCount();
-        int postsCount = statisticsMock.postsCount();
-        int usersCount = statisticsMock.usersNames().size();
-        double advPostsCountForUser = postsCount/usersCount;
+        calculate.calculateAdvStatistics(statisticsMock);
+        calculate.getAdvPostsCountForUser();
+        calculate.getAdvCommentsCountForPostsCount();
+        calculate.getAdvCommentsCountForUser();
+        statisticsMock.commentsCount();
+        statisticsMock.postsCount();
+        statisticsMock.usersNames().size();
 
-        //StatisticsCalculate statisticsCalculate = new StatisticsCalculate();
         //Then
-        Assert.assertEquals(50, comentsCount);
-        Assert.assertEquals(10, postsCount);
-        Assert.assertEquals(100, usersCount);
-        Assert.assertEquals(1000, usersCount);
-        Assert.assertEquals(1000.00, advPostsCountForUser);
-
+        Assert.assertEquals(50, statisticsMock.commentsCount());
+        Assert.assertEquals(10, statisticsMock.postsCount());
+        Assert.assertEquals(0, calculate.getAdvCommentsCountForPostsCount(),0);
+        Assert.assertEquals(0, calculate.getAdvPostsCountForUser(),0);
+        Assert.assertEquals(0,  calculate.getAdvCommentsCountForUser(),0);
     }
-    //private Statistics mock(Class<Statistics> statisticsClass) {
-    //}
-    /*
-gdy liczba postów = 0,
-gdy liczba postów = 1000,
-gdy liczba komentarzy = 0,
-gdy liczba komentarzy < liczba postów,
-gdy liczba komentarzy > liczba postów,
-gdy liczba użytkowników = 0,
-gdy liczba użytkowników = 100.
-     */
+    //Przypadek 3: gdy liczba komentarzy = 0,
+    @Test
+    public void testCalculateAdvStatistics3() {
+        //Given
+        Statistics statisticsMock = mock(Statistics.class);
+        ArrayList<String> usersList = new ArrayList<String>();
+        for (int i = 0;i< 100;i++) {
+           usersList.add("User"+i);
+        }
+        StatisticsCalculate1 calculate = new StatisticsCalculate1();
+
+        when(statisticsMock.postsCount()).thenReturn(10);
+        when(statisticsMock.commentsCount()).thenReturn(0);
+        when(statisticsMock.usersNames()).thenReturn(usersList);
+
+        //When
+        calculate.calculateAdvStatistics(statisticsMock);
+        calculate.getAdvPostsCountForUser();
+        calculate.getAdvCommentsCountForPostsCount();
+        calculate.getAdvCommentsCountForUser();
+        statisticsMock.commentsCount();
+        statisticsMock.postsCount();
+        statisticsMock.usersNames().size();
+
+        //Then
+        Assert.assertEquals(0, statisticsMock.commentsCount());
+        Assert.assertEquals(10, statisticsMock.postsCount());
+        Assert.assertEquals(0, calculate.getAdvCommentsCountForPostsCount(),0);
+        Assert.assertEquals(0.1, calculate.getAdvPostsCountForUser(),0);
+        Assert.assertEquals(0,  calculate.getAdvCommentsCountForUser(),0);
+    }
+    //Przypadek 4: gdy liczba komentarzy < liczba postów,,
+    @Test
+    public void testCalculateAdvStatistics4() {
+        //Given
+        //Liczba użytkowników 100
+        Statistics statisticsMock = mock(Statistics.class);
+        ArrayList<String> usersList = new ArrayList<String>();
+        for (int i = 0;i< 100;i++) {
+            usersList.add("User"+i);
+        }
+        StatisticsCalculate1 calculate = new StatisticsCalculate1();
+
+        when(statisticsMock.postsCount()).thenReturn(100);
+        when(statisticsMock.commentsCount()).thenReturn(10);
+        when(statisticsMock.usersNames()).thenReturn(usersList);
+
+        //When
+        calculate.calculateAdvStatistics(statisticsMock);
+        calculate.getAdvPostsCountForUser();
+        calculate.getAdvCommentsCountForPostsCount();
+        calculate.getAdvCommentsCountForUser();
+        statisticsMock.commentsCount();
+        statisticsMock.postsCount();
+        statisticsMock.usersNames().size();
+
+        //Then
+        Assert.assertEquals(10, statisticsMock.commentsCount());
+        Assert.assertEquals(100, statisticsMock.postsCount());
+        Assert.assertEquals(0.1, calculate.getAdvCommentsCountForPostsCount(),0);
+        Assert.assertEquals(1.0, calculate.getAdvPostsCountForUser(),0);
+        Assert.assertEquals(0.1,  calculate.getAdvCommentsCountForUser(),0);
+    }
+    //Przypadek 5: gdy liczba komentarzy > liczba postów,,
+    @Test
+    public void testCalculateAdvStatistics5() {
+        //Given
+        //Liczba użytkowników 100
+        Statistics statisticsMock = mock(Statistics.class);
+        ArrayList<String> usersList = new ArrayList<String>();
+        for (int i = 0;i< 100;i++) {
+            usersList.add("User"+i);
+        }
+        StatisticsCalculate1 calculate = new StatisticsCalculate1();
+
+        when(statisticsMock.postsCount()).thenReturn(100);
+        when(statisticsMock.commentsCount()).thenReturn(10000);
+        when(statisticsMock.usersNames()).thenReturn(usersList);
+
+        //When
+        calculate.calculateAdvStatistics(statisticsMock);
+        calculate.getAdvPostsCountForUser();
+        calculate.getAdvCommentsCountForPostsCount();
+        calculate.getAdvCommentsCountForUser();
+        statisticsMock.commentsCount();
+        statisticsMock.postsCount();
+        statisticsMock.usersNames().size();
+
+        //Then
+        Assert.assertEquals(10000, statisticsMock.commentsCount());
+        Assert.assertEquals(100, statisticsMock.postsCount());
+        Assert.assertEquals(100.0, calculate.getAdvCommentsCountForPostsCount(),0);
+        Assert.assertEquals(1.0, calculate.getAdvPostsCountForUser(),0);
+        Assert.assertEquals(100.0,  calculate.getAdvCommentsCountForUser(),0);
+    }
+    //Przypadek 6: gdy liczba postów = 0
+    @Test
+    public void testCalculateAdvStatistics6() {
+        //Given
+        Statistics statisticsMock = mock(Statistics.class);
+        ArrayList<String> usersList = new ArrayList<String>();
+        for (int i = 0;i< 100;i++) {
+            usersList.add("User"+i);
+        }
+        StatisticsCalculate1 calculate = new StatisticsCalculate1();
+
+        when(statisticsMock.postsCount()).thenReturn(0);
+        when(statisticsMock.commentsCount()).thenReturn(10000);
+        when(statisticsMock.usersNames()).thenReturn(usersList);
+
+        //When
+        calculate.calculateAdvStatistics(statisticsMock);
+        calculate.getAdvPostsCountForUser();
+        calculate.getAdvCommentsCountForPostsCount();
+        calculate.getAdvCommentsCountForUser();
+        statisticsMock.commentsCount();
+        statisticsMock.postsCount();
+        statisticsMock.usersNames().size();
+
+        //Then
+        Assert.assertEquals(10000, statisticsMock.commentsCount());
+        Assert.assertEquals(0, statisticsMock.postsCount(),0);
+        Assert.assertEquals(0, calculate.getAdvCommentsCountForPostsCount(),0);
+        Assert.assertEquals(0, calculate.getAdvPostsCountForUser(),0);
+        Assert.assertEquals(100.0,  calculate.getAdvCommentsCountForUser(),0);
+    }
+    //Przypadek 7: gdy liczba postów = 1000
+    @Test
+    public void testCalculateAdvStatistics7() {
+        //Given
+        //Liczba użytkowników 100
+        Statistics statisticsMock = mock(Statistics.class);
+        ArrayList<String> usersList = new ArrayList<String>();
+        for (int i = 0;i< 100;i++) {
+            usersList.add("User"+i);
+        }
+        StatisticsCalculate1 calculate = new StatisticsCalculate1();
+
+        when(statisticsMock.postsCount()).thenReturn(1000);
+        when(statisticsMock.commentsCount()).thenReturn(1000);
+        when(statisticsMock.usersNames()).thenReturn(usersList);
+
+        //When
+        calculate.calculateAdvStatistics(statisticsMock);
+        calculate.getAdvPostsCountForUser();
+        calculate.getAdvCommentsCountForPostsCount();
+        calculate.getAdvCommentsCountForUser();
+        statisticsMock.commentsCount();
+        statisticsMock.postsCount();
+        statisticsMock.usersNames().size();
+
+        //Then
+        Assert.assertEquals(1000, statisticsMock.commentsCount());
+        Assert.assertEquals(1000, statisticsMock.postsCount());
+        Assert.assertEquals(1, calculate.getAdvCommentsCountForPostsCount(),0);
+        Assert.assertEquals(10, calculate.getAdvPostsCountForUser(),0);
+        Assert.assertEquals(10,  calculate.getAdvCommentsCountForUser(),0);
+    }
+
 }

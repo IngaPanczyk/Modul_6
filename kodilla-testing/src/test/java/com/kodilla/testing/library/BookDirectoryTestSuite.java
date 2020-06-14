@@ -20,6 +20,14 @@ public class BookDirectoryTestSuite {
         }
         return resultList;
     }
+        @Test
+        public void testlistBooksInHandsOf(){
+
+            // Given
+
+
+        }
+
 
         @Test
         public void testListBooksWithConditionsReturnList () {

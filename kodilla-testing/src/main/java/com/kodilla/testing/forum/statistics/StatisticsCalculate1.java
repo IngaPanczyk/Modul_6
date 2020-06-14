@@ -4,22 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StatisticsCalculate1 {
-    int userCountNumber;
-    int postsCount;
-    int commentsCount;
+    double userCountNumber;
+    double postsCount;
+    double commentsCount;
     double advPostsCountForUser;
     double advCommentsCountForUser;
     double advCommentsCountForPostsCount;
 
-    public int getUserCountNumber() {
+    public double getUserCountNumber() {
         return userCountNumber;
     }
 
-    public int getPostsCount() {
+    public double getPostsCount() {
         return postsCount;
     }
 
-    public int getCommentsCount() {
+    public double getCommentsCount() {
         return commentsCount;
     }
 
@@ -37,21 +37,26 @@ public class StatisticsCalculate1 {
 
     public void calculateAdvStatistics(Statistics statistics) {
 
-        //List<String> usersNames = new ArrayList<String>();
-        //Liczenie iości użytkowników
+        // Liczenie liczby userów;
         userCountNumber = statistics.usersNames().size();
         //Liczenie ilości postów
         postsCount = statistics.postsCount();
         //Liczenie ilości komentarzy
         commentsCount = statistics.commentsCount();
-        //Liczenie średniej liczby postów na użytkownika
-        advPostsCountForUser = postsCount / userCountNumber;
         //Liczenie średniej liczby komentarzy na użytkownika
         advCommentsCountForUser = commentsCount / userCountNumber;
         //Liczenie średniej liczby komentarzy na post
         advCommentsCountForPostsCount = commentsCount / postsCount;
-
-        //return statistics;
+        //Liczenie średniej liczby postów na użytkownika
+        advPostsCountForUser = postsCount / userCountNumber;
+        if(postsCount == 0){
+            advCommentsCountForPostsCount = 0;
+        }
+        if(userCountNumber == 0){
+            advCommentsCountForPostsCount = 0;
+            advCommentsCountForUser = 0;
+            advPostsCountForUser = 0;
+        }
 
     }
 }
