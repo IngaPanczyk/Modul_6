@@ -49,11 +49,11 @@ public class StatisticsCalculate1 {
         advCommentsCountForPostsCount = commentsCount / postsCount;
         //Liczenie średniej liczby postów na użytkownika
         advPostsCountForUser = postsCount / userCountNumber;
-        if(postsCount == 0){
+
+        if (postsCount == 0) {
             advCommentsCountForPostsCount = 0;
         }
-        if(userCountNumber == 0){
-            advCommentsCountForPostsCount = 0;
+        if (userCountNumber == 0) {
             advCommentsCountForUser = 0;
             advPostsCountForUser = 0;
         }
