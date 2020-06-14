@@ -19,9 +19,10 @@ public class BookLibrary {
         bookList = resultList;
         return bookList;
     }
-    /*
+
     //METODA Z ZADANIA (Zawraca książki, które ma wypożyczone konktertny User)
     public List<Book> listBooksInHandsOf(LibraryUser libraryUser){
-        return
-    }*/
+        List<Book> userList = libraryDatabase.listBooksInHandsOf(libraryUser);
+        return userList;
+    }
 }
