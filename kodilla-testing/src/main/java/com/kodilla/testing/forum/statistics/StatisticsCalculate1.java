@@ -35,23 +35,23 @@ public class StatisticsCalculate1 {
         return advCommentsCountForPostsCount;
     }
 
-    public Statistics calculateAdvStatistics(Statistics statistics) {
+    public void calculateAdvStatistics(Statistics statistics) {
 
-        List<String> usersNames = new ArrayList<String>();
-        //Liczenie iości urzytkowników
-        int userCountNumber = usersNames.size();
+        //List<String> usersNames = new ArrayList<String>();
+        //Liczenie iości użytkowników
+        userCountNumber = statistics.usersNames().size();
         //Liczenie ilości postów
-        int postsCount = statistics.postsCount();
+        postsCount = statistics.postsCount();
         //Liczenie ilości komentarzy
-        int commentsCount = statistics.commentsCount();
+        commentsCount = statistics.commentsCount();
         //Liczenie średniej liczby postów na użytkownika
-        double advPostsCountForUser = postsCount / userCountNumber;
+        advPostsCountForUser = postsCount / userCountNumber;
         //Liczenie średniej liczby komentarzy na użytkownika
-        double advCommentsCountForUser = commentsCount / userCountNumber;
+        advCommentsCountForUser = commentsCount / userCountNumber;
         //Liczenie średniej liczby komentarzy na post
-        double advCommentsCountForPostsCount = commentsCount / postsCount;
+        advCommentsCountForPostsCount = commentsCount / postsCount;
 
-        return statistics;
+        //return statistics;
 
     }
 }

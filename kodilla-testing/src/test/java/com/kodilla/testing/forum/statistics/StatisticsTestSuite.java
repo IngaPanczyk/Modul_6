@@ -9,7 +9,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class StatisticsTestSuite {
-
+    //Przypadek 1: Liczba użytkowników = 100
     @Test
     public void testCalculateAdvStatistics1() {
         //Given
@@ -22,22 +22,32 @@ public class StatisticsTestSuite {
         StatisticsCalculate1 calculate = new StatisticsCalculate1();
 
         when(statisticsMock.postsCount()).thenReturn(10);
-        when(statisticsMock.usersNames()).thenReturn(usersList);
         when(statisticsMock.commentsCount()).thenReturn(50);
         when(statisticsMock.usersNames()).thenReturn(usersList);
 
         //When
-        int comentsCount = statisticsMock.commentsCount();
-        int postsCount = statisticsMock.postsCount();
-        int usersCount = statisticsMock.usersNames().size();
-        double advPostsCountForUser = calculate.getAdvPostsCountForUser();
+        calculate.calculateAdvStatistics(statisticsMock);
+        calculate.getAdvPostsCountForUser();
+        System.out.println(calculate.getAdvPostsCountForUser());
+        calculate.getAdvCommentsCountForPostsCount();
+        statisticsMock.commentsCount();
+        statisticsMock.postsCount();
+        statisticsMock.usersNames().size();
 
-        //StatisticsCalculate statisticsCalculate = new StatisticsCalculate();
         //Then
-        Assert.assertEquals(50, comentsCount);
-        Assert.assertEquals(10, postsCount);
-        Assert.assertEquals(100, usersCount);
-        Assert.assertEquals(15.00, advPostsCountForUser,0);
+        //commentsCount
+        Assert.assertEquals(50, statisticsMock.commentsCount());
+        //postsCount
+        Assert.assertEquals(10, statisticsMock.postsCount());
+        //AdvCommentsCountForPostsCount
+        System.out.println(statisticsMock.postsCount());
+        System.out.println(statisticsMock.usersNames().size());
+        System.out.println("Average: " + calculate.getAdvCommentsCountForPostsCount());
+        Assert.assertEquals(5.0, calculate.getAdvCommentsCountForPostsCount(),0);
+        //AdvPostsCountForUser
+        //Assert.assertEquals(15.00, calculate.getAdvPostsCountForUser(),0);
+        System.out.println(calculate.getAdvPostsCountForUser());
+        //Assert.assertEquals(15.00, advCommentsCountForPostsCount,0);
 
     }
     /*
