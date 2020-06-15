@@ -20,32 +20,24 @@ public class BookDirectoryTestSuite {
         }
         return resultList;
     }
+
     // Przypadek 1: Ilość książek 5;
     @Test
     public void testlistBooksInHandsOf1() {
         // Given
         LibraryDatabase libraryDatabaseMock = mock(LibraryDatabase.class);
         BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
-        LibraryUser libraryUser = new LibraryUser("Adam","Nowak","123");
+        LibraryUser libraryUser = new LibraryUser("Adam", "Nowak", "123");
 
-        List<Book> resultListOfBooks = new ArrayList<Book>();
-        Book book1 = new Book("Secrets of Alamo", "John Smith", 2008);
-        Book book2 = new Book("Secretaries and Directors", "Dilbert Michigan", 2012);
-        Book book3 = new Book("Secret life of programmers", "Steve Wolkowitz", 2016);
-        Book book4 = new Book("Secrets of Java", "Ian Tenewitch", 2010);
-        Book book5 = new Book("Secrets of Java", "Ian Tenewitch", 2012);
-        resultListOfBooks.add(book1);
-        resultListOfBooks.add(book2);
-        resultListOfBooks.add(book3);
-        resultListOfBooks.add(book4);
-        resultListOfBooks.add(book5);
+        List<Book> resultListOf5Books = generateListOfNBooks(5);
+
         when(libraryDatabaseMock.listBooksInHandsOf(libraryUser))
-                .thenReturn(resultListOfBooks);
+                .thenReturn(resultListOf5Books);
         // When
         List<Book> theListOfBooks = bookLibrary.listBooksInHandsOf(libraryUser);
 
         // Then
-        assertEquals(resultListOfBooks, theListOfBooks);
+        assertEquals(resultListOf5Books, theListOfBooks);
     }
 
     // Przypadek 2: Ilość książek 1;
@@ -54,7 +46,7 @@ public class BookDirectoryTestSuite {
         // Given
         LibraryDatabase libraryDatabaseMock = mock(LibraryDatabase.class);
         BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
-        LibraryUser libraryUser = new LibraryUser("Adam","Nowak","123");
+        LibraryUser libraryUser = new LibraryUser("Adam", "Nowak", "123");
 
         List<Book> resultListOfBooks = new ArrayList<Book>();
         Book book1 = new Book("Secrets of Alamo", "John Smith", 2008);
@@ -67,13 +59,14 @@ public class BookDirectoryTestSuite {
         // Then
         assertEquals(resultListOfBooks, theListOfBooks);
     }
+
     // Przypadek 3: Ilość książek 0;
     @Test
     public void testlistBooksInHandsOf3() {
         // Given
         LibraryDatabase libraryDatabaseMock = mock(LibraryDatabase.class);
         BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
-        LibraryUser libraryUser = new LibraryUser("Adam","Nowak","123");
+        LibraryUser libraryUser = new LibraryUser("Adam", "Nowak", "123");
 
         List<Book> resultListOfBooks = new ArrayList<Book>();
         when(libraryDatabaseMock.listBooksInHandsOf(libraryUser))
@@ -84,8 +77,6 @@ public class BookDirectoryTestSuite {
         // Then
         assertEquals(resultListOfBooks, theListOfBooks);
     }
-
-
 
     @Test
     public void testListBooksWithConditionsReturnList() {
